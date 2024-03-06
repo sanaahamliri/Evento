@@ -13,4 +13,9 @@ class categorie extends Model
         'categorieName',
         
     ];
+
+    public function events()
+    {
+        return $this->hasMany(event::class,'IdCategory');
+    }
 }

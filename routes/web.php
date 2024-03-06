@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,11 @@ Route::get('/organisateur/event', [EventController::class, 'allevent'])->name('e
 Route::put('/organisateur/event/{id}', [eventController::class, 'update'])->name('event.Modievent');
 Route::delete('/organisateur/event/{id}', [eventController::class, 'destroy'])->name('event.deleteevent');
 /** End events */
+
+// home page
+Route::get('/', [HomeController::class, 'showEvents']);
+
+// home page end
 
 
 Route::get('/dashboard', function () {

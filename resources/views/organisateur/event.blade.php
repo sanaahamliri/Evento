@@ -200,7 +200,7 @@
                                 @csrf
                                 @method('POST')
                                 <div class="grid gap-4 mb-4 grid-cols-2">
-                                    
+
                                     <div class="col-span-2">
                                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Name</label>
                                         <input type="text" name="title" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nom" required="">
@@ -215,7 +215,7 @@
                                     <div class="col-span-2">
                                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Category</label>
                                         <select name="categorieID" id="">
-                                        <option value="">choose a category</option>
+                                            <option value="">choose a category</option>
 
                                             @foreach($categories as $category)
                                             <option value="{{$category->id}}">{{$category->categorieName}}</option>
@@ -230,7 +230,7 @@
                                     </div>
                                     <div class="col-span-2">
                                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Time</label>
-                                        <input type="number" name="date" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nom" required="">
+                                        <input type="text" name="date" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nom" required="">
                                     </div>
 
                                     <div class="col-span-2">
@@ -277,11 +277,11 @@
                                                                         </th>
 
                                                                         <th scope="col" class="_wYiJGbRZyFZeCc8y7Sf gMXmdpOPfqG_3CKkL0VD ezMFUVl744lvw6ht0lFe _fj5qD1qKucIHy44xhzZ upQp7iWehfaU8VTbfx_w PeR2JZ9BZHYIH8Ea3F36 sdSaZcRa4_We5kKaX4pf OyABRrnTV_kvHV7dJ0uE">
-                                                                            Event Category
-                                                                        </th>
-
-                                                                        <th scope="col" class="_wYiJGbRZyFZeCc8y7Sf gMXmdpOPfqG_3CKkL0VD ezMFUVl744lvw6ht0lFe _fj5qD1qKucIHy44xhzZ upQp7iWehfaU8VTbfx_w PeR2JZ9BZHYIH8Ea3F36 sdSaZcRa4_We5kKaX4pf OyABRrnTV_kvHV7dJ0uE">
                                                                             place
+                                                                        </th>
+                                                                        
+                                                                        <th scope="col" class="_wYiJGbRZyFZeCc8y7Sf gMXmdpOPfqG_3CKkL0VD ezMFUVl744lvw6ht0lFe _fj5qD1qKucIHy44xhzZ upQp7iWehfaU8VTbfx_w PeR2JZ9BZHYIH8Ea3F36 sdSaZcRa4_We5kKaX4pf OyABRrnTV_kvHV7dJ0uE">
+                                                                            Event Category
                                                                         </th>
 
                                                                         <th scope="col" class="_wYiJGbRZyFZeCc8y7Sf gMXmdpOPfqG_3CKkL0VD ezMFUVl744lvw6ht0lFe _fj5qD1qKucIHy44xhzZ upQp7iWehfaU8VTbfx_w PeR2JZ9BZHYIH8Ea3F36 sdSaZcRa4_We5kKaX4pf OyABRrnTV_kvHV7dJ0uE">
@@ -308,7 +308,7 @@
                                                                             {{ $s->place}}
                                                                         </td>
                                                                         <td class="_wYiJGbRZyFZeCc8y7Sf c8dCx6gnV43hTOLV6ks5 _43MO1gcdi2Y0RJW1uHL __9sbu0yrzdhGIkLWNXl BHrWGjM1Iab_fAz0_91H OyABRrnTV_kvHV7dJ0uE">
-                                                                            {{ $s->category}}
+                                                                            {{ $s->categories->categorieName}}
                                                                         </td>
                                                                         <td class="_wYiJGbRZyFZeCc8y7Sf c8dCx6gnV43hTOLV6ks5 _43MO1gcdi2Y0RJW1uHL __9sbu0yrzdhGIkLWNXl BHrWGjM1Iab_fAz0_91H OyABRrnTV_kvHV7dJ0uE">
                                                                             {{ $s->date}}
@@ -369,7 +369,7 @@
                                                                                                 </div>
                                                                                                 <div class="col-span-2">
                                                                                                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Time</label>
-                                                                                                    <input type="number" name="date" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nom" required="">
+                                                                                                    <input type="text" name="date" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nom" required="">
                                                                                                 </div>
 
                                                                                                 <div class="col-span-2">

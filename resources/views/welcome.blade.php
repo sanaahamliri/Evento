@@ -44,8 +44,20 @@ https://www.tooplate.com/view/2125-artxibition
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="index.html">Home</a></li>
-                            <li><a href="shows-events.html">Shows &amp; Events</a></li>
-                            <li><a href="tickets.html">Tickets</a></li>
+                           
+                            @if (Route::has('login'))
+                            @auth
+                            @else
+
+                            <li><a href="{{ route('login') }}">Log in</a></li>
+                            @if (Route::has('register'))
+                            <li><a href="{{ route('register') }}">Sign Up</a></li>
+
+                            @endif
+                            @endauth
+                            @endif
+
+
                         </ul>
                         <a class="menu-trigger">
                             <span>Menu</span>
@@ -75,15 +87,30 @@ https://www.tooplate.com/view/2125-artxibition
             <div class="row">
                 <div class="col-lg-8">
                     <div class="left-image">
-                        <img src="assets/images/about-image.jpg" alt="party time">
+                        <img src="assets/images/R.jpeg" alt="party time">
                     </div>
                 </div>
                 <div class="col-lg-4">
+                    <div class="right-content">
+                        <div class="about-map-image">
+                            <img src="assets/images/about-map-image.jpg" alt="party location">
+                        </div>
+                        <div class="down-content">
+                            <h4>Lorem ipsum dolor sit.</h4>
+                            <ul>
+                                <li>Lorem ipsum dolor sit.</li>
+                            </ul>
+                            <span><br></span>
 
+                            <span><i class="fa fa-ticket"></i> Lorem ipsum dolor sit amet.</span>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="also-like">
         <div class="container">
@@ -91,6 +118,7 @@ https://www.tooplate.com/view/2125-artxibition
                 <div class="col-lg-12">
                     <h2>You Might Also Like...</h2>
                 </div>
+                @foreach($events as $ev)
                 <div class="col-lg-4">
                     <div class="like-item">
                         <div class="thumb">
@@ -102,55 +130,20 @@ https://www.tooplate.com/view/2125-artxibition
                                 </ul>
                             </div>
                         </div>
+
                         <div class="down-content">
-                            <span>Sept 10 to 14, 2021</span>
+                            <span>{{$ev->date}}</span>
                             <a href="event-details.html">
-                                <h4>Wonder Land Music and Arts Festival</h4>
+                                <h4>{{$ev->title}}</h4>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="like-item">
-                        <div class="thumb">
-                            <a href="event-details.html"><img src="assets/images/like-02.jpg" alt=""></a>
-                            <div class="icons">
-                                <ul>
-                                    <li><a href="event-details.html"><i class="fa fa-arrow-right"></i></a></li>
-                                    <li><a href="ticket-details.html"><i class="fa fa-ticket"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="down-content">
-                            <span>Oct 11 to 16, 2021</span>
-                            <a href="event-details.html">
-                                <h4>Big Water Splashing Festival</h4>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="like-item">
-                        <div class="thumb mx-16">
-                            <a href="event-details.html"><img src="assets/images/like-03.jpg" alt=""></a>
-                            <div class="icons">
-                                <ul class="my-24 mx-16">
-                                    <li class=""><a href="event-details.html"><i class="fa fa-arrow-right"></i></a></li>
-                                    <li><a href="ticket-details.html"><i class="fa fa-ticket"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="down-content">
-                            <span>Nov 10 to 18, 2021</span>
-                            <a href="event-details.html">
-                                <h4>Tiger Dance Hip Hop Festival</h4>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
+
 
 
     <!-- *** Subscribe *** -->
