@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\BlockController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SinglePageController;
+use Illuminate\Console\Scheduling\Event;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +22,10 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/home', function () {
+    return view('home');
 });
 
 
@@ -40,7 +47,16 @@ Route::delete('/organisateur/event/{id}', [eventController::class, 'destroy'])->
 /** End events */
 
 // home page
-Route::get('/', [HomeController::class, 'showEvents']);
+Route::get('/organisateur/block', function () {
+    return view('organisateur.block');
+});
+Route::get('/admin/dashboard', [CategorieController::class, 'index'])->name('admin.dashboard');
+
+Route::get('/home', [HomeController::class, 'showEvents']);
+Route::get('/singlePage/{event}', [eventController::class, 'show'])->name('event.show');
+
+Route::get('/admin/block', [BlockController::class, 'showBlockedUsers'])->name('admin.block');
+
 
 // home page end
 

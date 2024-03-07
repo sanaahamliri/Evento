@@ -119,7 +119,7 @@
     </nav>
     <div class="YRrCJSr_j5nopfm4duUc wfz9oKCp_svYP9oWrZuR wBVMFkIGfrKshbvi2gS1 jtAJHOc7mn7b4IKRO59D h8KYXnua2NT4kTVzieom">
 
-        <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
+    <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
             <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
                 <ul class="space-y-2 font-medium">
                     <li>
@@ -169,100 +169,58 @@
                 </ul>
             </div>
         </aside>
-        <div id="main-content" class="ahOqFrhzLjivRe8a1kX_ t6gkcSf0Bt4MLItXvDJ_ uLPch_bqyJDXwe5tynMV _lTTGxW9MVI40FyDCtmr jtAJHOc7mn7b4IKRO59D zW58fVqdWJHfumftUEwF h8KYXnua2NT4kTVzieom">
-            <main>
+        <div class="_SmdlCf6eUKB_V9S5IDj _LPVUrp9Uina5fcERqWC _DGThsbfFGclb6iwA4_9 QhmQ_v3mmDFIP9VaVOfb _JKsnSqP4tIzydAzf5aP yQK4azPzSPqQ3rmcKxWm" id="sidebarBackdrop"></div>
+        <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
+            <h1 class="text-center  m-10"><b>Users Manage</b></h1>
+            <!-- Client Table -->
+            <div class="mt-4 mx-4">
+                <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                    <div class="w-full overflow-x-auto">
+                        <table class="w-full">
 
-                <div class="RZmKBZs1E1eXw8vkE6jY mlwbuv_bMkMhzTA3msA3">
+                            <thead>
+                                <tr class="bg-gray-200">
+                                    <th class="border p-2">User Name</th>
+                                    <th class="border p-2">User Email</th>
+                                    <th class="border p-2">User Role</th>
+                                    <th class="border p-2">joining date</th>
+                                    <th class="border p-2">Block Users</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
+                                @foreach($blockedUsers as $user)
+                                <tr class="border">
+                                    <td class="border p-2">{{$user->name}}</td>
+                                    <td class="border p-2">{{$user->email}}</td>
+                                    <td class="border p-2">{{$user->role}}</td>
+                                    <td class="border p-2">{{$user->created_at}}</td>
 
-                    <div class="xCPtuxM4_gihvpPwv9bX Nu4HUn5EQpnNJ1itNkrd iHPddplqYvrN6qWgvntn XJih04pKHf8Cekga6Hj3 t6gkcSf0Bt4MLItXvDJ_ _wDL7UcyA_Sot_H5YE7K sIk4Wc5VFaQpncPF5Sx4">
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
+                                    <td class="border p-2 flex justify-around">
+                                        <form action="" method="POST">
+                                            <input type="hidden" name="WikiId" value="">
+                                            <input type="hidden" name="wiki" value="archiveWiki">
+                                            <button type="submit" name="archive">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 9.3345 19.8412 6.93964 18 5.29168M5.63605 5.63605L18.364 18.364" stroke="red" stroke-width="1.5" stroke-linecap="round" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
 
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                        Total Users count</h3>
-                                </div>
-
-                            </div>
-                            <div id="new-products-chart"></div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                       Clients count</h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                    Organisators count</h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                    Reservations count</h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                    Categories count <br><b>{{$categorieCount}}</b> </h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                    Eventss count <br><b></b> </h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-
+                            </tbody>
+                        </table>
+                        </table>
                     </div>
-
-
-                    <script src="https://flowbite.com/application-ui/demo/app.bundle.js"></script>
-                    <script src="https://flowbite.com/application-ui/demo/app.bundle.js"></script>
-                    <script src="https://cdn.tailwindcss.com"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://flowbite.com/application-ui/demo/app.bundle.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
 
 </html>

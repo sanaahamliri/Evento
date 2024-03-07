@@ -44,7 +44,7 @@ https://www.tooplate.com/view/2125-artxibition
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="index.html">Home</a></li>
-                           
+
                             @if (Route::has('login'))
                             @auth
                             @else
@@ -56,8 +56,15 @@ https://www.tooplate.com/view/2125-artxibition
                             @endif
                             @endauth
                             @endif
-
-
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                            {{ __('Log Out') }}
+                                        </x-dropdown-link>
+                                </form>
+                            </li>
                         </ul>
                         <a class="menu-trigger">
                             <span>Menu</span>
@@ -112,53 +119,38 @@ https://www.tooplate.com/view/2125-artxibition
     </div>
 
 
-   
-
-
-
-    <!-- *** Subscribe *** -->
-    <div class="subscribe">
+    <div class="also-like">
         <div class="container">
             <div class="row">
-               
-                <div class="col-lg-8">
-                    <form id="subscribe" action="" method="get">
-                        <div class="row">
-                            <div class="col-lg-9">
-                                <fieldset>
-                                </fieldset>
-                            </div>
-                            <div class="col-lg-3">
-                                
+                <div class="col-lg-12">
+                    <h2>You Might Also Like...</h2>
+                </div>
+                @foreach($events as $ev)
+                <div class="col-lg-4">
+                    <div class="like-item">
+                        <div class="thumb">
+                            <a href="{{route('event.show' , $ev)}}"><img src="assets/images/like-01.jpg" alt=""></a>
+                            <div class="icons">
+                                <ul>
+                                    <li><a href="{{route('event.show' , $ev)}}"><i class="fa fa-arrow-right"></i></a></li>
+                                    <li><a href="ticket-details.html"><i class="fa fa-ticket"></i></a></li>
+                                </ul>
                             </div>
                         </div>
-                    </form>
+
+                        <div class="down-content">
+                            <span>{{$ev->date}}</span>
+                            <a href="event-details.html">
+                                <h4>{{$ev->title}}</h4>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
 
-    <!-- *** Footer *** -->
-
-
-    <!-- jQuery -->
-    <script src="assets/js/jquery-2.1.0.min.js"></script>
-
-    <!-- Bootstrap -->
-    <script src="assets/js/popper.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-
-    <!-- Plugins -->
-    <script src="assets/js/scrollreveal.min.js"></script>
-    <script src="assets/js/waypoints.min.js"></script>
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/imgfix.min.js"></script>
-    <script src="assets/js/mixitup.js"></script>
-    <script src="assets/js/accordions.js"></script>
-    <script src="assets/js/owl-carousel.js"></script>
-
-    <!-- Global Init -->
-    <script src="assets/js/custom.js"></script>
 
 </body>
 

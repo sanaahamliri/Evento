@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\client;
+use App\Models\organisator;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -32,20 +34,35 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => 'required',
         ]);
-
+    
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
+    
+        if ($request->role == 'client') {
+            $client = client::create(['IdUser' => $user->id]);
+        } elseif ($request->role == 'organisator') {
+            $organisator = organisator::create([
+                'IdUser' => $user->id,
+            ]);
+        }
+    Auth::login($user);
+        if ($user->role == 'client') {
+            
+            return redirect('/home');
+        } elseif ($user->role == 'organisator') {
+           
+            return redirect('/organisateur/event');
+        }
+    
         return redirect(RouteServiceProvider::HOME);
     }
+    
 }

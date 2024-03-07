@@ -21,4 +21,9 @@ class event extends Model
     {
         return $this->belongsTo(categorie::class,'IdCategory');
     }       
+
+    public function users()
+    {
+        return $this->belongsTo(User::class,'IdUser');
+    }       
 }

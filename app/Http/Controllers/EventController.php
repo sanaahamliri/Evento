@@ -14,7 +14,12 @@ class EventController extends Controller
     public function index()
     {
         $eventCount = event::count();
-        return view('organisateur.dashboard', compact('eventCount'));
+        return view('admin.dashboard', compact('eventCount'));
+    }
+
+    public function show(Event $event)
+    {
+        return view('singlePage', compact('event'));
     }
 
     public function allevent()

@@ -13,6 +13,6 @@ class HomeController extends Controller
         $events = event::all();
         $categories = categorie::all();
        
-        return view('welcome', compact('events','categories'));
+        return view('home', compact('events','categories'));
     }
 }
