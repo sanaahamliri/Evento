@@ -24,12 +24,23 @@ class EventController extends Controller
 
     public function allevent()
     {
-        $events = event::all();
+        $events = event::all();   
+
         $categories = categorie::all();
        
         return view('organisateur.event', compact('events','categories'));
     }
 
+
+
+
+    
+    public function showUnValidEvents()
+    {
+        $UnValidEvents = event::where('status', '0')->get();    
+
+        return view('admin.validate', compact('UnValidEvents'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -88,5 +99,17 @@ class EventController extends Controller
         $event->delete();
 
         return redirect()->back();
+    }
+
+
+    public function validation(Request $request, event $event)
+    {
+
+        if (!$event->status) {
+            $event->update([
+                'status' => 1,
+            ]);
+            return redirect()->back()->with('success', 'event validated!');
+        }
     }
 }

@@ -62,8 +62,16 @@ Route::get('/admin/block', [BlockController::class, 'showBlockedUsers'])->name('
 Route::get('/admin/blocked', [BlockController::class, 'showUnBlockedUsers'])->name('admin.blocked');
 
 
+Route::get('/admin/validate', [EventController::class, 'showUnValidEvents'])->name('admin.validate');
+
+
+
+
 Route::patch('/admin/{client}/dashboard', [ClientController::class, 'ban'])->name('client.ban');
 Route::put('/admin/dashboard/{organisator}', [OrganisatorController::class, 'ban'])->name('organisator.ban');
+
+
+Route::patch('/admin/{event}/dashboard', [EventController::class, 'validation'])->name('event.validate');
 
 // home page end
 

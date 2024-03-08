@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 
 class SinglePageController extends Controller
 {
-    
-        public function showDetails()
-        {
-            $events = event::with('categories')->get();
-            return view('singlePage', compact('events'));
-        }
+
+    public function showDetails()
+    {
+        $events = Event::with('categories')  
+            ->where('status', '1')           
+            ->get();
+        return view('singlePage', compact('events'));
     }
+}

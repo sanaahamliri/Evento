@@ -123,7 +123,7 @@ https://www.tooplate.com/view/2125-artxibition
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>You Might Also Like...</h2>
+                    <h2>Available Events ...</h2>
                 </div>
                 @foreach($events as $ev)
                 <div class="col-lg-4">

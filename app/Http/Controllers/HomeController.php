@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function showEvents()
     {
-        $events = event::all();
+        $events = event::where('status', '1')->get();
         $categories = categorie::all();
        
         return view('home', compact('events','categories'));
