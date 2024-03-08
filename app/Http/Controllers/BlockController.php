@@ -9,26 +9,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-    class BlockController extends Controller
+class BlockController extends Controller
 {
     public function showBlockedUsers()
     {
-        $blockedUsers = DB::table('users')
-            ->join('clients', 'users.id', '=', 'clients.IdUser')
-            ->where('clients.status', 0)
-            ->select('users.name', 'users.email', 'users.role', 'users.created_at')
-            ->get();
+        $blockedUsers = client::where('status', '0')->get();    
+        $blockedOrganisators = organisator::where('status', '0')->get();
 
-        $blockedOrganisators = DB::table('users')
-            ->join('organisators', 'users.id', '=', 'organisators.IdUser')
-            ->where('organisators.status', 0)
-            ->select('users.name', 'users.email', 'users.role', 'users.created_at')
-            ->get();
+        return view('admin.block', compact('blockedUsers', 'blockedOrganisators'));
+    }
 
-        $blockedUsers = $blockedUsers->merge($blockedOrganisators)->toArray();
+    public function showUnBlockedUsers()
+    {
+        $UnblockedUsers = client::where('status', '1')->get();    
+        $UnblockedOrganisators = organisator::where('status', '1')->get();
 
-        return view('admin.block', compact('blockedUsers'));
+        return view('admin.blocked', compact('UnblockedUsers', 'UnblockedOrganisators'));
     }
 }
-
-

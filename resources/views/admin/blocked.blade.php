@@ -157,7 +157,6 @@
                             <span class="flex-1 ms-3 whitespace-nowrap">Users Access</span>
                         </a>
                     </li>
-
                     <li>
                         <a href="{{ route('admin.blocked') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
@@ -177,100 +176,81 @@
                 </ul>
             </div>
         </aside>
-        <div id="main-content" class="ahOqFrhzLjivRe8a1kX_ t6gkcSf0Bt4MLItXvDJ_ uLPch_bqyJDXwe5tynMV _lTTGxW9MVI40FyDCtmr jtAJHOc7mn7b4IKRO59D zW58fVqdWJHfumftUEwF h8KYXnua2NT4kTVzieom">
-            <main>
+        <div class="_SmdlCf6eUKB_V9S5IDj _LPVUrp9Uina5fcERqWC _DGThsbfFGclb6iwA4_9 QhmQ_v3mmDFIP9VaVOfb _JKsnSqP4tIzydAzf5aP yQK4azPzSPqQ3rmcKxWm" id="sidebarBackdrop"></div>
+        <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
+            <h1 class="text-center  m-10"><b>Users Manage</b></h1>
+            <!-- Client Table -->
+            <div class="mt-4 mx-4">
+                <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                    <div class="w-full overflow-x-auto">
+                        <table class="w-full">
 
-                <div class="RZmKBZs1E1eXw8vkE6jY mlwbuv_bMkMhzTA3msA3">
+                            <thead>
+                                <tr class="bg-gray-200">
+                                    <th class="border p-2">User Name</th>
+                                    <th class="border p-2">User Email</th>
+                                    <th class="border p-2">User Role</th>
+                                    <th class="border p-2">joining date</th>
+                                    <th class="border p-2">UnBlock</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
+                                @foreach($UnblockedUsers as $client)
+                                <tr class="border">
+                                    <td class="border p-2">{{$client->users->name}}</td>
+                                    <td class="border p-2">{{$client->users->email}}</td>
+                                    <td class="border p-2">{{$client->users->role}}</td>
+                                    <td class="border p-2">{{$client->users->created_at}}</td>
 
-                    <div class="xCPtuxM4_gihvpPwv9bX Nu4HUn5EQpnNJ1itNkrd iHPddplqYvrN6qWgvntn XJih04pKHf8Cekga6Hj3 t6gkcSf0Bt4MLItXvDJ_ _wDL7UcyA_Sot_H5YE7K sIk4Wc5VFaQpncPF5Sx4">
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
+                                    <td class="border p-2 flex justify-around">
+                                        <form action="{{ route('client.ban',['client'=>$client->id]) }}" method="POST">
+                                        @method("PATCH")
+                                            @csrf
+                                            <input type="hidden" name="" value="">
+                                            <input type="hidden" name="" value="">
+                                            <button type="submit" name="bann">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.63604 18.364C9.15076 21.8787 14.8492 21.8787 18.364 18.364C21.8787 14.8492 21.8787 9.15076 18.364 5.63604C14.8492 2.12132 9.15076 2.12132 5.63604 5.63604C2.12132 9.15076 2.12132 14.8492 5.63604 18.364ZM7.80749 17.6067C10.5493 19.6623 14.4562 19.4433 16.9497 16.9497C19.4433 14.4562 19.6623 10.5493 17.6067 7.80749L14.8284 10.5858C14.4379 10.9763 13.8047 10.9763 13.4142 10.5858C13.0237 10.1953 13.0237 9.5621 13.4142 9.17157L16.1925 6.39327C13.4507 4.33767 9.54384 4.55666 7.05025 7.05025C4.55666 9.54384 4.33767 13.4507 6.39327 16.1925L9.17157 13.4142C9.5621 13.0237 10.1953 13.0237 10.5858 13.4142C10.9763 13.8047 10.9763 14.4379 10.5858 14.8284L7.80749 17.6067Z" fill="green" />
+                                                </svg>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @foreach($UnblockedOrganisators as $organisator)
+                                <tr class="border">
+                                    <td class="border p-2">{{$organisator->users->name}}</td>
+                                    <td class="border p-2">{{$organisator->users->email}}</td>
+                                    <td class="border p-2">{{$organisator->users->role}}</td>
+                                    <td class="border p-2">{{$organisator->users->created_at}}</td>
 
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                        Total Users count</h3>
-                                </div>
+                                    <td class="border p-2 flex justify-around">
+                                        <form action="{{ route('organisator.ban',['organisator'=>$organisator->id]) }}" method="POST">
+                                        @method("PUT")
+                                            @csrf
+                                            <input type="hidden" name="" value="">
+                                            <input type="hidden" name="" value="">
+                                            <button type="submit" name="bann">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.63604 18.364C9.15076 21.8787 14.8492 21.8787 18.364 18.364C21.8787 14.8492 21.8787 9.15076 18.364 5.63604C14.8492 2.12132 9.15076 2.12132 5.63604 5.63604C2.12132 9.15076 2.12132 14.8492 5.63604 18.364ZM7.80749 17.6067C10.5493 19.6623 14.4562 19.4433 16.9497 16.9497C19.4433 14.4562 19.6623 10.5493 17.6067 7.80749L14.8284 10.5858C14.4379 10.9763 13.8047 10.9763 13.4142 10.5858C13.0237 10.1953 13.0237 9.5621 13.4142 9.17157L16.1925 6.39327C13.4507 4.33767 9.54384 4.55666 7.05025 7.05025C4.55666 9.54384 4.33767 13.4507 6.39327 16.1925L9.17157 13.4142C9.5621 13.0237 10.1953 13.0237 10.5858 13.4142C10.9763 13.8047 10.9763 14.4379 10.5858 14.8284L7.80749 17.6067Z" fill="green" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
 
-                            </div>
-                            <div id="new-products-chart"></div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                       Clients count</h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                    Organisators count</h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                    Reservations count</h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                    Categories count <br><b>{{$categorieCount}}</b> </h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                    Eventss count <br><b></b> </h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-
+                            </tbody>
+                        </table>
+                        </table>
                     </div>
-
-
-                    <script src="https://flowbite.com/application-ui/demo/app.bundle.js"></script>
-                    <script src="https://flowbite.com/application-ui/demo/app.bundle.js"></script>
-                    <script src="https://cdn.tailwindcss.com"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://flowbite.com/application-ui/demo/app.bundle.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
 
 </html>

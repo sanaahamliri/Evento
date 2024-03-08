@@ -119,7 +119,7 @@
     </nav>
     <div class="YRrCJSr_j5nopfm4duUc wfz9oKCp_svYP9oWrZuR wBVMFkIGfrKshbvi2gS1 jtAJHOc7mn7b4IKRO59D h8KYXnua2NT4kTVzieom">
 
-    <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
+        <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
             <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
                 <ul class="space-y-2 font-medium">
                     <li>
@@ -157,7 +157,14 @@
                             <span class="flex-1 ms-3 whitespace-nowrap">Users Access</span>
                         </a>
                     </li>
-
+                    <li>
+                        <a href="{{ route('admin.blocked') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                                <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Blocked Users</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
@@ -184,23 +191,44 @@
                                     <th class="border p-2">User Email</th>
                                     <th class="border p-2">User Role</th>
                                     <th class="border p-2">joining date</th>
-                                    <th class="border p-2">Block Users</th>
+                                    <th class="border p-2">Block</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach($blockedUsers as $user)
+                                @foreach($blockedUsers as $client)
                                 <tr class="border">
-                                    <td class="border p-2">{{$user->name}}</td>
-                                    <td class="border p-2">{{$user->email}}</td>
-                                    <td class="border p-2">{{$user->role}}</td>
-                                    <td class="border p-2">{{$user->created_at}}</td>
+                                    <td class="border p-2">{{$client->users->name}}</td>
+                                    <td class="border p-2">{{$client->users->email}}</td>
+                                    <td class="border p-2">{{$client->users->role}}</td>
+                                    <td class="border p-2">{{$client->users->created_at}}</td>
 
                                     <td class="border p-2 flex justify-around">
-                                        <form action="" method="POST">
-                                            <input type="hidden" name="WikiId" value="">
-                                            <input type="hidden" name="wiki" value="archiveWiki">
-                                            <button type="submit" name="archive">
+                                        <form action="{{ route('client.ban',['client'=>$client->id]) }}" method="POST">
+                                            @method("PATCH")
+                                            @csrf
+                                            <button type="submit">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 9.3345 19.8412 6.93964 18 5.29168M5.63605 5.63605L18.364 18.364" stroke="red" stroke-width="1.5" stroke-linecap="round" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+
+                                @foreach($blockedOrganisators as $organisator)
+                                <tr class="border">
+                                    <td class="border p-2">{{$organisator->users->name}}</td>
+                                    <td class="border p-2">{{$organisator->users->email}}</td>
+                                    <td class="border p-2">{{$organisator->users->role}}</td>
+                                    <td class="border p-2">{{$organisator->users->created_at}}</td>
+
+                                    <td class="border p-2 flex justify-around">
+                                        <form action="{{ route('organisator.ban',['organisator'=>$organisator->id]) }}" method="POST">
+                                            @method("PUT")
+                                            @csrf
+                                            <button type="submit">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
                                                     <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 9.3345 19.8412 6.93964 18 5.29168M5.63605 5.63605L18.364 18.364" stroke="red" stroke-width="1.5" stroke-linecap="round" />
                                                 </svg>

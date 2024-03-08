@@ -62,4 +62,22 @@ class ClientController extends Controller
     {
         //
     }
+
+    public function ban(Request $request, client $client)
+    {
+
+
+
+        if (!$client->status) {
+            $client->update([
+                'status' => 1,
+            ]);
+            return redirect()->back()->with('success', 'user Banned!');
+        } else {
+            $client->update([
+                'status' => 0,
+            ]);
+            return redirect()->back()->with('success', 'user Unbanned!');
+        }
+    }
 }

@@ -4,8 +4,10 @@ use App\Http\Controllers\BlockController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrganisatorController;
 use App\Http\Controllers\SinglePageController;
 use Illuminate\Console\Scheduling\Event;
 
@@ -57,6 +59,11 @@ Route::get('/singlePage/{event}', [eventController::class, 'show'])->name('event
 
 Route::get('/admin/block', [BlockController::class, 'showBlockedUsers'])->name('admin.block');
 
+Route::get('/admin/blocked', [BlockController::class, 'showUnBlockedUsers'])->name('admin.blocked');
+
+
+Route::patch('/admin/{client}/dashboard', [ClientController::class, 'ban'])->name('client.ban');
+Route::put('/admin/dashboard/{organisator}', [OrganisatorController::class, 'ban'])->name('organisator.ban');
 
 // home page end
 
@@ -71,4 +78,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

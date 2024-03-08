@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('place_number');
             $table->foreignId('IdCategory')->constrained('categories');
             $table->foreignId('IdUser')->constrained('users');
+            $table->boolean('status')->default('0');
+
             $table->timestamps();
         });
     }

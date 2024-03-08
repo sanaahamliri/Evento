@@ -48,5 +48,15 @@ class User extends Authenticatable
     public function events()
     {
         return $this->hasMany(event::class);
+    }  
+
+    public function clients()
+    {
+        return $this->hasOne(client::class, 'IdUser');
+    }   
+
+    public function organisator()
+    {
+        return $this->hasOne(organisator::class, 'IdUser');
     }       
 }

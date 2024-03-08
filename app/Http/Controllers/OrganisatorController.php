@@ -62,4 +62,19 @@ class OrganisatorController extends Controller
     {
         //
     }
+
+    public function ban(organisator $organisator)
+    {
+        if (!$organisator->status) {
+            $organisator->update([
+                'status' => 1,
+            ]);
+            return redirect()->back()->with('success', 'user Banned!');
+        }else {
+            $organisator->update([
+                'status' => 0,
+            ]);
+            return redirect()->back()->with('success', 'user Unbanned!');
+        }
+    }
 }

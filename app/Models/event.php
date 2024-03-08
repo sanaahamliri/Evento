@@ -16,6 +16,7 @@ class event extends Model
         'place_number',
         'IdCategory',
         'IdUser',
+        'status',
     ];
     public function categories()
     {

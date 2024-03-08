@@ -9,11 +9,11 @@ class client extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'IdUser',
+        'IdUser', "status"
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'IdUser');
     }
 }
