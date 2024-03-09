@@ -11,79 +11,63 @@ use App\Http\Controllers\OrganisatorController;
 use App\Http\Controllers\SinglePageController;
 use Illuminate\Console\Scheduling\Event;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
+
+/*========welcome page=========*/
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/home', function () {
-    return view('home');
-});
+/*======== end welcome page=========*/
 
 
-/** categories */
-Route::post('/admin/categorie', [CategorieController::class, 'ajoutercategorie'])->name('categorie.ajoutercategorie');
-Route::get('/admin/categories', [CategorieController::class, 'allcategorie'])->name('admin.categories');
-Route::get('/admin/categorie', [CategorieController::class, 'allcategorie'])->name('categorie.allcategorie');
-Route::put('/admin/categorie/{id}', [CategorieController::class, 'update'])->name('categorie.Modicategorie');
-Route::delete('/admin/categorie/{id}', [CategorieController::class, 'destroy'])->name('categorie.deletecategorie');
-/** End categories */
+
+/*========client page=========*/
+Route::get('/home', function () {return view('home');});
+Route::get('/home', [HomeController::class, 'showEvents']);
+Route::get('/singlePage/{event}', [eventController::class, 'show'])->name('event.show');
+/*========end client page=========*/
 
 
-/** events */
+
+/*========organisateur page=========*/
+//events
 Route::post('/organisateur/event', [EventController::class, 'ajouterevent'])->name('event.ajouterevent');
 Route::get('/organisateur/events', [EventController::class, 'allevent'])->name('organisateur.events');
 Route::get('/organisateur/event', [EventController::class, 'allevent'])->name('event.allevent');
 Route::put('/organisateur/event/{id}', [eventController::class, 'update'])->name('event.Modievent');
 Route::delete('/organisateur/event/{id}', [eventController::class, 'destroy'])->name('event.deleteevent');
-/** End events */
+//End events
+/*========end organisateur page=========*/
 
-// home page
-Route::get('/organisateur/block', function () {
-    return view('organisateur.block');
-});
+
+
+
+/*========admin page=========*/
 Route::get('/admin/dashboard', [CategorieController::class, 'index'])->name('admin.dashboard');
-
-Route::get('/home', [HomeController::class, 'showEvents']);
-Route::get('/singlePage/{event}', [eventController::class, 'show'])->name('event.show');
-
 Route::get('/admin/block', [BlockController::class, 'showBlockedUsers'])->name('admin.block');
-
 Route::get('/admin/blocked', [BlockController::class, 'showUnBlockedUsers'])->name('admin.blocked');
-
-
 Route::get('/admin/validate', [EventController::class, 'showUnValidEvents'])->name('admin.validate');
+Route::patch('/admin/{client}/block', [ClientController::class, 'ban'])->name('client.ban');
+Route::put('/admin/block/{organisator}', [OrganisatorController::class, 'ban'])->name('organisator.ban');
+Route::patch('/admin/{event}/validate', [EventController::class, 'validation'])->name('event.validate');
 
 
+//categories
+Route::post('/admin/categorie', [CategorieController::class, 'ajoutercategorie'])->name('categorie.ajoutercategorie');
+Route::get('/admin/categories', [CategorieController::class, 'allcategorie'])->name('admin.categories');
+Route::get('/admin/categorie', [CategorieController::class, 'allcategorie'])->name('categorie.allcategorie');
+Route::put('/admin/categorie/{id}', [CategorieController::class, 'update'])->name('categorie.Modicategorie');
+Route::delete('/admin/categorie/{id}', [CategorieController::class, 'destroy'])->name('categorie.deletecategorie');
+// End categories
+/*========end admin page=========*/
 
 
-Route::patch('/admin/{client}/dashboard', [ClientController::class, 'ban'])->name('client.ban');
-Route::put('/admin/dashboard/{organisator}', [OrganisatorController::class, 'ban'])->name('organisator.ban');
-
-
-Route::patch('/admin/{event}/dashboard', [EventController::class, 'validation'])->name('event.validate');
-
-// home page end
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+/*profil settings*/
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+/*end profil settings*/
 
 require __DIR__ . '/auth.php';

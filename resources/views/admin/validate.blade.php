@@ -8,7 +8,7 @@
     <meta name="author" content="Themesberg">
     <meta name="generator" content="Hugo 0.88.1">
 
-    <title>Mediconnect | Admin</title>
+    <title>Evento | Admin</title>
 
     <link rel="canonical" href="https://flowbite.com/application-ui/demo/">
 
@@ -206,7 +206,7 @@
                                     <td class="border p-2">{{$evento->users->name}}</td>
 
                                     <td class="border p-2 flex justify-around">
-                                        <form action="{{route('admin.validate', $evento)}}" method="POST">
+                                        <form action="{{route('event.validate', $evento)}}" method="POST">
                                             @method("PATCH")
                                             @csrf
                                             <button type="submit">

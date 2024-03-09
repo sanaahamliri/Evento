@@ -65,9 +65,6 @@ class ClientController extends Controller
 
     public function ban(Request $request, client $client)
     {
-
-
-
         if (!$client->status) {
             $client->update([
                 'status' => 1,
