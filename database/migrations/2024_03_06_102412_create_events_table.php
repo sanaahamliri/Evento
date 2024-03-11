@@ -11,7 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::disableForeignKeyConstraints();
+              Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('description');
@@ -21,6 +22,8 @@ return new class extends Migration
             $table->foreignId('IdCategory')->constrained('categories');
             $table->foreignId('IdUser')->constrained('users');
             $table->boolean('status')->default('0');
+            $table->boolean('ReservationStatus');
+
 
             $table->timestamps();
         });

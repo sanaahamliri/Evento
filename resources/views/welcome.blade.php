@@ -39,11 +39,11 @@ https://www.tooplate.com/view/2125-artxibition
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">Ev<em>ento</em></a>
+                        <a href="#" class="logo">Ev<em>ento</em></a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="#">Home</a></li>
                            
                             @if (Route::has('login'))
                             @auth

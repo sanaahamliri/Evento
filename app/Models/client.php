@@ -16,4 +16,8 @@ class client extends Model
     {
         return $this->belongsTo(User::class, 'IdUser');
     }
+
+    public function clients(){
+        return $this->hasMany(Reservation::class, 'clientID');
+    }
 }

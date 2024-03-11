@@ -142,7 +142,7 @@
                     </li>
 
                     <li>
-                        <a href="{{route('admin.validate') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="{{ route('admin.validate') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                             </svg>
@@ -157,7 +157,6 @@
                             <span class="flex-1 ms-3 whitespace-nowrap">Users Access</span>
                         </a>
                     </li>
-
                     <li>
                         <a href="{{ route('admin.blocked') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
@@ -177,100 +176,64 @@
                 </ul>
             </div>
         </aside>
-        <div id="main-content" class="ahOqFrhzLjivRe8a1kX_ t6gkcSf0Bt4MLItXvDJ_ uLPch_bqyJDXwe5tynMV _lTTGxW9MVI40FyDCtmr jtAJHOc7mn7b4IKRO59D zW58fVqdWJHfumftUEwF h8KYXnua2NT4kTVzieom">
-            <main>
+        <div class="_SmdlCf6eUKB_V9S5IDj _LPVUrp9Uina5fcERqWC _DGThsbfFGclb6iwA4_9 QhmQ_v3mmDFIP9VaVOfb _JKsnSqP4tIzydAzf5aP yQK4azPzSPqQ3rmcKxWm" id="sidebarBackdrop"></div>
+        <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
+            <h1 class="text-center  m-10"><b>Events Manage</b></h1>
+            <!-- Client Table -->
+            <div class="mt-4 mx-4">
+                <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                    <div class="w-full overflow-x-auto">
+                        <table class="w-full">
 
-                <div class="RZmKBZs1E1eXw8vkE6jY mlwbuv_bMkMhzTA3msA3">
+                            <thead>
+                                <tr class="bg-gray-200">
+                                    <th class="border p-2">Event title</th>
+                                    <th class="border p-2">Event place</th>
+                                    <th class="border p-2">Event date</th>
+                                    <th class="border p-2">place count</th>
+                                    <th class="border p-2">Organizer name</th>
+                                    <th class="border p-2">Valid</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
+                                <tr class="border">
+                                    <td class="border p-2">kjdf</td>
+                                    <td class="border p-2">dkjv</td>
+                                    <td class="border p-2">kjdsv</td>
+                                    <td class="border p-2">sidbuv</td>
+                                    <td class="border p-2">sdjkvn</td>
 
-                    <div class="xCPtuxM4_gihvpPwv9bX Nu4HUn5EQpnNJ1itNkrd iHPddplqYvrN6qWgvntn XJih04pKHf8Cekga6Hj3 t6gkcSf0Bt4MLItXvDJ_ _wDL7UcyA_Sot_H5YE7K sIk4Wc5VFaQpncPF5Sx4">
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
+                                    <td class="border p-2 flex justify-around">
+                                        <form action="{{route('reservation.accept', $reservation)}}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit">
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25x" height="25px" viewBox="0 0 512 512" version="1.1">
+                                                    <title>validate</title>
+                                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <g id="Combined-Shape" fill="green" transform="translate(64.000000, 63.999974)">
+                                                            <path d="M336.9,-1.42108547e-14 L306.419,42.666 L42.6666667,42.6666928 L42.6666667,341.333359 L341.333333,341.333359 L341.333,140.606 L384,80.872 L384,384.000026 L1.42108547e-14,384.000026 L1.42108547e-14,2.61499954e-05 L336.9,-1.42108547e-14 Z M345.307019,24.9336114 L380.026314,49.7331076 L205.714356,293.769849 L65.2539169,159.416386 L94.7460831,128.583667 L199.616,228.885359 L345.307019,24.9336114 Z M357.333333,2.61499954e-05 L357.333,7.308 L347.102,-1.42108547e-14 L357.333333,2.61499954e-05 Z">
 
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                        Total Users count<br><b>{{$userCount}}</b></h3>
-                                </div>
-
-                            </div>
-                            <div id="new-products-chart"></div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                       Clients count<br><b>{{$clientCount}}</b></h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                    Organizers count<br><b>{{$organizerCount}}</b></h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                    Reservations count <br><b>{{$reservationCount}}</b></h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                    Categories count <br><b>{{$categorieCount}}</b> </h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="_wYiJGbRZyFZeCc8y7Sf _Ybd3WwuTVljUT4vEaM3 mveJTCIb2WII7J4sY22F mngKhi_Rv06PF57lblDI _YxZw_O8dWkTljptcO7z SWDELhWFjL8JxEtm91_o _1jTZ8KXRZul60S6czNi">
-                            <div class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2">
-                                <div class="VQS2tmQ_zFyBOC2tkmto">
-                                    <span class="q1oXbofRCOhVhOSB8tiU IOPhczRgtphv6NdNBDjj wgkxUJNDca22__ptDPRh __9sbu0yrzdhGIkLWNXl cdZDaAM7xDQV_z8X7CiP OyABRrnTV_kvHV7dJ0uE">
-
-                                    </span>
-                                    <h3 class="d3C8uAdJKNl1jzfE9ynq _43MO1gcdi2Y0RJW1uHL PeR2JZ9BZHYIH8Ea3F36 XIIs8ZOri3wm8Wnj9N_y">
-                                    Events count <br><b>{{$eventCount}}</b> </h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-
+                                                            </path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </table>
                     </div>
-
-
-                    <script src="https://flowbite.com/application-ui/demo/app.bundle.js"></script>
-                    <script src="https://flowbite.com/application-ui/demo/app.bundle.js"></script>
-                    <script src="https://cdn.tailwindcss.com"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://flowbite.com/application-ui/demo/app.bundle.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
 
 </html>

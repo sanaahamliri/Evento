@@ -1,7 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\CategorieRequest;
 use App\Models\categorie;
+use App\Models\client;
+use App\Models\event;
+use App\Models\organisator;
+use App\Models\Reservation;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CategorieController extends Controller
@@ -12,7 +19,13 @@ class CategorieController extends Controller
     public function index()
     {
         $categorieCount = Categorie::count();
-        return view('admin.dashboard', compact('categorieCount'));
+        $eventCount = event::count();
+        $reservationCount = Reservation::count();
+        $organizerCount = organisator::count();
+        $clientCount = client::count();
+        $userCount = User::count();
+
+        return view('admin.dashboard', compact('categorieCount', 'eventCount', 'reservationCount', 'organizerCount', 'clientCount', 'userCount'));
     }
 
     public function allcategorie()
@@ -25,23 +38,17 @@ class CategorieController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function ajoutercategorie(Request $request)
+    public function ajoutercategorie(CategorieRequest $request)
     {
-        $request->validate([
-            'categorieName' => 'required',
-        ]);
+        
         Categorie::create([
             'categorieName' => $request->categorieName,
         ]);
         return redirect()->back();
     }
 
-    public function update(Request $request, $id)
+    public function update(CategorieRequest $request, $id)
     {
-        $request->validate([
-            'categorieName' => 'required',
-        ]);
-
         $categorie = Categorie::findOrFail($id);
         $categorie->update([
             'categorieName' => $request->categorieName,

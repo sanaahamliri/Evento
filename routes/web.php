@@ -8,12 +8,14 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrganisatorController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SinglePageController;
 use Illuminate\Console\Scheduling\Event;
 
 
 
 /*========welcome page=========*/
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,9 +24,18 @@ Route::get('/', function () {
 
 
 /*========client page=========*/
-Route::get('/home', function () {return view('home');});
-Route::get('/home', [HomeController::class, 'showEvents']);
+// Route::get('/home', function () {
+//     return view('home');
+// });
+
+Route::get('/home', [HomeController::class, 'showEvents'])->name('home');
 Route::get('/singlePage/{event}', [eventController::class, 'show'])->name('event.show');
+Route::post('/home/filter', [EventController::class, 'filter'])->name('event.filter');
+// Route::post('/home', [EventController::class, 'search'])->name('event.search');
+Route::get('/home', [EventController::class, 'search'])->name('event.search');
+Route::post('/singlePage/{event}', [ReservationController::class, 'store'])->name('reservation.store');
+
+
 /*========end client page=========*/
 
 
@@ -32,10 +43,14 @@ Route::get('/singlePage/{event}', [eventController::class, 'show'])->name('event
 /*========organisateur page=========*/
 //events
 Route::post('/organisateur/event', [EventController::class, 'ajouterevent'])->name('event.ajouterevent');
+Route::get('/organisateur/dashboard', [ReservationController::class, 'index'])->name('organisateur.dashboard');
+
 Route::get('/organisateur/events', [EventController::class, 'allevent'])->name('organisateur.events');
 Route::get('/organisateur/event', [EventController::class, 'allevent'])->name('event.allevent');
 Route::put('/organisateur/event/{id}', [eventController::class, 'update'])->name('event.Modievent');
 Route::delete('/organisateur/event/{id}', [eventController::class, 'destroy'])->name('event.deleteevent');
+Route::put('/organisateur/reservation', [ReservationController::class, 'acceptReservation'])->name('reservation.accept');
+
 //End events
 /*========end organisateur page=========*/
 
@@ -44,6 +59,7 @@ Route::delete('/organisateur/event/{id}', [eventController::class, 'destroy'])->
 
 /*========admin page=========*/
 Route::get('/admin/dashboard', [CategorieController::class, 'index'])->name('admin.dashboard');
+
 Route::get('/admin/block', [BlockController::class, 'showBlockedUsers'])->name('admin.block');
 Route::get('/admin/blocked', [BlockController::class, 'showUnBlockedUsers'])->name('admin.blocked');
 Route::get('/admin/validate', [EventController::class, 'showUnValidEvents'])->name('admin.validate');
@@ -60,6 +76,11 @@ Route::put('/admin/categorie/{id}', [CategorieController::class, 'update'])->nam
 Route::delete('/admin/categorie/{id}', [CategorieController::class, 'destroy'])->name('categorie.deletecategorie');
 // End categories
 /*========end admin page=========*/
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 /*profil settings*/

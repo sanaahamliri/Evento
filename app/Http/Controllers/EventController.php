@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventRequest;
 use App\Models\categorie;
 use App\Models\event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class EventController extends Controller
 {
     /**
@@ -24,62 +26,35 @@ class EventController extends Controller
 
     public function allevent()
     {
-        $events = event::all();   
+        $events = event::all();
 
         $categories = categorie::all();
-       
-        return view('organisateur.event', compact('events','categories'));
+
+        return view('organisateur.event', compact('events', 'categories'));
     }
 
 
 
 
-    
+
     public function showUnValidEvents()
     {
-        $UnValidEvents = event::where('status', '0')->get();    
+        $UnValidEvents = event::where('status', '0')->get();
 
         return view('admin.validate', compact('UnValidEvents'));
     }
     /**
      * Show the form for creating a new resource.
      */
-    public function ajouterevent(Request $request)
-    {
-        $id = Auth::user()->id;
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'place' => 'required',
-            'date' => 'required',
-            'place_number' => 'required',
-            'categorieID' => 'required',
-            
-
-    
-        ]);
-        event::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'place' => $request->place,
-            'date' => $request->date,
-            'place_number' => $request->place_number,
-            'IdCategory' => $request->categorieID,
-            'IdUser' => $id,
-
-        ]);
+    public function ajouterevent(EventRequest $request)
+    {   
+        event::create($request->validated());
         return redirect()->back();
     }
 
-    public function update(Request $request, $id)
+    public function update(EventRequest $request, $id)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'place' => 'required',
-            'date' => 'required',
-            'place_number' => 'required',
-        ]);
+
 
         $event = event::findOrFail($id);
         $event->update([
@@ -111,5 +86,29 @@ class EventController extends Controller
             ]);
             return redirect()->back()->with('success', 'event validated!');
         }
+    }
+
+
+    public function filter(Request $request)
+    {
+        if ($request->IdCategorie == 'all') {
+            $events = Event::where('status', '1')->get();;
+        } else {
+            $events = Event::where('IdCategory', $request->IdCategorie)->get();
+        }
+
+        $categories = Categorie::all();
+
+        return view('home', compact('events', 'categories'));
+    }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        $events = Event::where('title', 'like', '%' . $searchTerm . '%')->get();
+        $categories = Categorie::all();
+
+        return view('home', compact('events', 'categories'));
     }
 }
