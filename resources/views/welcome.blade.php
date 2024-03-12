@@ -76,7 +76,7 @@ https://www.tooplate.com/view/2125-artxibition
             <div class="row">
                 <div class="col-lg-12">
                     <h2>Welcome To Evento </h2>
-                    <span>reserver vos événements préféres </span>
+                    <span>reserver à vos événements préféres </span>
                 </div>
             </div>
         </div>
@@ -102,7 +102,7 @@ https://www.tooplate.com/view/2125-artxibition
                             </ul>
                             <span><br></span>
 
-                            <span><i class="fa fa-ticket"></i> reserver vos evenements préféres</span>
+                            <span><i class="fa fa-ticket"></i> reserver à vos evenements préféres</span>
 
                         </div>
                     </div>

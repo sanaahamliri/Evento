@@ -87,6 +87,7 @@ class EventController extends Controller
             ]);
             return redirect()->back()->with('success', 'event validated!');
         }
+
     }
 
     public function filter(Request $request)
@@ -108,9 +109,12 @@ class EventController extends Controller
     {
         $searchTerm = $request->input('search');
 
-        $events = Event::where('title', 'like', '%' . $searchTerm . '%')->paginate(3);
+        $events = Event::where('title', 'like', '%' . $searchTerm . '%')->where('status', '1')->paginate(3);
+       
+       
         $categories = Categorie::all();
 
         return view('home', compact('events', 'categories'));
     }
+
 }

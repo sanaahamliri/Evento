@@ -94,3 +94,6 @@ Route::middleware('auth')->group(function () {
 /*end profil settings*/
 
 require __DIR__ . '/auth.php';
+// test
+
+Route::get('/test', [EventController::class, 'ShowReservationEvent'])->name('test');

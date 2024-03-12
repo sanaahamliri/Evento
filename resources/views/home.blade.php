@@ -131,7 +131,7 @@ https://www.tooplate.com/view/2125-artxibition
                         <div class="down-content">
                             <h4> welcome to evento.</h4>
                             <ul>
-                                <li>reserver vos evenements préféres</li>
+                                <li>reserver à vos evenements préféres</li>
                             </ul>
                             <span><br></span>
 
