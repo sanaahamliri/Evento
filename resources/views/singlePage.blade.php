@@ -49,7 +49,7 @@ https://www.tooplate.com/view/2125-artxibition
 
                         <!-- Settings Dropdown -->
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
-                        <a href="/home" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150" >Home</a>
+                            <a href="/home" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">Home</a>
 
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
@@ -115,7 +115,7 @@ https://www.tooplate.com/view/2125-artxibition
 
     <div class="shows-events-schedule">
         @if(session('success'))
-        <p class="bg-green py-2 w-full text-white rounded-md mr-10">{{session('success')}}</p>
+        <p class="bg-green py-2 w-full text-black rounded-md mr-10">{{session('success')}}</p>
         @endif
         <div class="container">
             <div class="row">
@@ -136,6 +136,10 @@ https://www.tooplate.com/view/2125-artxibition
                                 <div class="col-lg-3">
                                     <div class="place"><span> Event Category : <b>{{$event->categories->categorieName}}</b></span></div>
                                 </div>
+
+                                <div class="col-lg-3">
+                                    <div class="place"><span> Event Description : <b>{{$event->description}}</b></span></div>
+                                </div>
                                 <div class="col-lg-3">
                                     <div class="place"><span>Event Organizer : <b>{{$event->users->name}}</b></span></div>
                                     <form action="{{ route('reservation.store', $event) }}" method="post">
@@ -143,13 +147,16 @@ https://www.tooplate.com/view/2125-artxibition
                                         @method('POST')
                                         <input type="hidden" name="clientID" value="{{ Auth::user()->clients->id }}">
                                         <input type="hidden" name="eventID" value="{{ $event->id }}">
-                                        <button class="bg-purple-500 active:bg-purple-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150">
+                                        <button class="bg-gray-500 active:bg-purple-600 uppercase text-black font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150">
                                             Reserve
                                         </button>
                                     </form>
                                 </div>
+
                             </div>
                         </li>
+                        <li> <button class="bg-gray-500 active:bg-purple-600 uppercase text-black font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-0 ease-linear transition-all duration-150 ">
+                                <a href="/ticket">view my tickets </a> </button></li>
                     </ul>
                 </div>
             </div>
@@ -188,3 +195,17 @@ https://www.tooplate.com/view/2125-artxibition
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="results"></div>

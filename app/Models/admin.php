@@ -5,19 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class client extends Model
+class admin extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'IdUser', "status"
+        'IdUser',
     ];
-
     public function users()
     {
         return $this->belongsTo(User::class, 'IdUser');
-    }
-
-    public function reservation(){
-        return $this->hasMany(Reservation::class, 'clientID');
     }
 }

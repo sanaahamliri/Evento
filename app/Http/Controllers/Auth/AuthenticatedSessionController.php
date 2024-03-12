@@ -32,11 +32,21 @@ class AuthenticatedSessionController extends Controller
         if (Auth::user()->role === 'admin') {
             return redirect()->route('admin.dashboard');
         } elseif (Auth::user()->role === 'organisator') {
-            return redirect('/organisateur/event');
+            if (Auth::user()->organisator->status) {
+                Auth::logout();
+                redirect('/login')->with('message', 'banned');
+            } else {
+                return redirect('/organisateur/event');
+            }
         } elseif (Auth::user()->role === 'client') {
-            return redirect('/home');
+            if (Auth::user()->clients->status) {
+                Auth::logout();
+                redirect()->back()->with('message', 'banned');
+            } else {
+                return redirect('/home');
+            }
         }
-        return redirect()->intended(RouteServiceProvider::HOME);
+
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

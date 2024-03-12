@@ -6,6 +6,8 @@ use App\Http\Requests\ReservationRequest;
 use App\Models\Event;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ReservationController extends Controller
 {
@@ -18,7 +20,7 @@ class ReservationController extends Controller
         $NotAccepetedreservationCount = Reservation::where('status', '0')->count();
         $AccepetedreservationCount = Reservation::where('status', '1')->count();
 
-        return view('organisateur.dashboard',compact('reservationCount', 'AccepetedreservationCount', 'NotAccepetedreservationCount'));
+        return view('organisateur.dashboard', compact('reservationCount', 'AccepetedreservationCount', 'NotAccepetedreservationCount'));
     }
 
 
@@ -33,27 +35,25 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ReservationRequest $request,event $event)
+    public function store(ReservationRequest $request, event $event)
     {
-        
-       $data = $request->validated();
-        if($event->ReservationStatus){
+
+        $data = $request->validated();
+        if ($event->ReservationStatus) {
             $data['status'] = true;
             Reservation::create($data);
             $event->update([
                 'place_number' => ($event->place_number - 1),
             ]);
-            return view('ticket');
-        }else{
+            return redirect()->back()->with('success', 'booked successefully!');
+        } else {
             $data['status'] = false;
             Reservation::create($data);
             $event->update([
                 'place_number' => ($event->place_number - 1),
             ]);
-            return redirect()->back()->with('success', 'booked successefully  youshould wait the organizer accept your reservation!');
-
+            return redirect()->back()->with('success', 'booked successefully  you should wait the organizer accept your reservation!');
         }
-
     }
 
     /**
@@ -64,12 +64,11 @@ class ReservationController extends Controller
         //
     }
 
-    public function showEventReservations(Event $event)
+    public function showEventReservations()
     {
-        $reservations = Reservation::where('eventID', $event->id)
-            ->where('status', '0')
+        $reservations = Reservation::where('status', 0)
             ->get();
-        return view('organizer.eventReservations', compact('reservations', 'event'));
+        return view('organisateur.reservation', compact('reservations'));
     }
 
     /**
@@ -111,5 +110,12 @@ class ReservationController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Reservation accepted!');
+    }
+    public function showTicket(Reservation $events)
+    {
+        $id = Auth::user()->clients->id;
+        $reservation =  Reservation::where('clientID', $id)
+            ->get();
+        return view('ticket', compact('reservation'));
     }
 }

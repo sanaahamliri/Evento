@@ -1,5 +1,8 @@
 <x-guest-layout>
     <!-- Session Status -->
+    @if(session('message'))
+     <p class="text-white w-full bg-red-500">session('message')</p>
+     @endif
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">

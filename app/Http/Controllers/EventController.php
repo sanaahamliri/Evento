@@ -7,6 +7,7 @@ use App\Models\categorie;
 use App\Models\event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 
 class EventController extends Controller
 {
@@ -47,7 +48,7 @@ class EventController extends Controller
      * Show the form for creating a new resource.
      */
     public function ajouterevent(EventRequest $request)
-    {   
+    {
         event::create($request->validated());
         return redirect()->back();
     }
@@ -88,13 +89,12 @@ class EventController extends Controller
         }
     }
 
-
     public function filter(Request $request)
     {
         if ($request->IdCategorie == 'all') {
-            $events = Event::where('status', '1')->get();;
+            $events = Event::where('status', '1')->paginate(3);
         } else {
-            $events = Event::where('IdCategory', $request->IdCategorie)->get();
+            $events = Event::where('IdCategory', $request->IdCategorie)->paginate(3);
         }
 
         $categories = Categorie::all();
@@ -102,11 +102,13 @@ class EventController extends Controller
         return view('home', compact('events', 'categories'));
     }
 
+
+
     public function search(Request $request)
     {
         $searchTerm = $request->input('search');
 
-        $events = Event::where('title', 'like', '%' . $searchTerm . '%')->get();
+        $events = Event::where('title', 'like', '%' . $searchTerm . '%')->paginate(3);
         $categories = Categorie::all();
 
         return view('home', compact('events', 'categories'));
