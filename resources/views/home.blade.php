@@ -108,8 +108,8 @@ https://www.tooplate.com/view/2125-artxibition
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Lorem ipsum dolor sit amet.</h2>
-                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                    <h2>Welcome To Evento </h2>
+                    <span>reserver vos evenements préféres.</span>
                 </div>
             </div>
         </div>
@@ -129,13 +129,13 @@ https://www.tooplate.com/view/2125-artxibition
                             <img src="assets/images/about-map-image.jpg" alt="party location">
                         </div>
                         <div class="down-content">
-                            <h4>Lorem ipsum dolor sit.</h4>
+                            <h4> welcome to evento.</h4>
                             <ul>
-                                <li>Lorem ipsum dolor sit.</li>
+                                <li>reserver vos evenements préféres</li>
                             </ul>
                             <span><br></span>
 
-                            <span><i class="fa fa-ticket"></i> Lorem ipsum dolor sit amet.</span>
+                            <span><i class="fa fa-ticket"></i> Amusez vous avec evento</span>
 
                         </div>
                     </div>
